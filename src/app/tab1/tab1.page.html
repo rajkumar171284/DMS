@@ -14,7 +14,12 @@
     </ion-toolbar>
   </ion-header>
 
-  
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="dark" (click)="callFilterModal()">
+      <ion-icon name="filter-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
 
     <cdk-virtual-scroll-viewport  minBufferPx="400" maxBufferPx="1350" itemSize="46">
       <ion-row>

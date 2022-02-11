@@ -17,6 +17,10 @@ const routes: Routes = [
   {
     path: 'device-list',
     loadChildren: () => import('./pages/device-list/device-list.module').then( m => m.DeviceListPageModule)
+  },
+  {
+    path: 'device-filter',
+    loadChildren: () => import('./pages/device-filter/device-filter.module').then( m => m.DeviceFilterPageModule)
   }
 ];
 @NgModule({

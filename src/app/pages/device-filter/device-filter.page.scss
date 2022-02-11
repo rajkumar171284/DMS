@@ -1,0 +1,21 @@
+.mycard{
+    display: flex;position: relative;
+    flex-direction: column;
+    height: 100%;border-radius: 3px;
+    background:linear-gradient(to right,#040404,#000000,#656565);
+    ion-label{
+        text-transform:uppercase;
+    }
+    ion-list,ion-item{
+        width:100%;
+        --ion-background-color: transparent !important;
+    }
+    input,select,ion-select{
+        color:#fff;
+        --ion-color:#fff!important
+    }
+}
+.src-footer{
+    position: absolute;
+    bottom: 0;z-index: 10;width: 100%;
+}

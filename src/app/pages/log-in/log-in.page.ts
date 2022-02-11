@@ -4,6 +4,11 @@ import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validat
 import {ErrorStateMatcher} from '@angular/material/core';
 import { ModalController } from '@ionic/angular';
 
+import { deviceModel } from '../../../model/main.model';
+import { ApiRequestService } from '../../api-request.service';
+
+const model = new deviceModel();
+export const cityList = model.cityJSON;
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -28,9 +33,19 @@ export class LogInPage implements OnInit {
   
   })
   matcher = new MyErrorStateMatcher();
-  constructor(private fb:FormBuilder,private router:Router,public modalController: ModalController) { }
+  constructor(private fb:FormBuilder,private router:Router,public modalController: ModalController,
+    private api:ApiRequestService) { 
+    
+
+      // this.api.getCityies().subscribe(res=>console.log(res))
+  }
 
   ngOnInit() {
+    // let arr:any=[];
+    // cityList.states.map(res => {
+    //   res.districts.map(group => arr.push(group));
+    // })
+    // this.api.sendCities(arr);
   }
 
 

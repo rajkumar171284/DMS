@@ -1,3 +1,9 @@
+export interface DeviceFilter {
+  device_type: string;
+  start_date: string;
+  end_date: string;
+  location: string;
+}
 export interface newDeviceParams {
   device_model: string;
   device_name: string[];

@@ -6,8 +6,7 @@ import { startWith, map } from 'rxjs/operators';
 
 import { ApiRequestService } from '../../api-request.service';
 const model = new deviceModel();
-const cityList = model.cityJSON;
-;
+
 export const _filter = (opt: string[], value: string): string[] => {
   const filterValue = value.toLowerCase();
 
@@ -22,15 +21,9 @@ const IPPattern = "^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|
   styleUrls: ['./config-device.component.scss'], providers: [FormBuilder]
 })
 export class ConfigDeviceComponent implements OnInit {
-
   constructor(private fb: FormBuilder, private api: ApiRequestService) {
 
-    // console.log(cityList)
-    this.newCities = [];
-    cityList.states.map(res => {
-      res.districts.map(group => this.newCities.push(group));
 
-    })
   }
   newDevice = this.fb.group({
     type: ['', Validators.required],
@@ -47,10 +40,21 @@ export class ConfigDeviceComponent implements OnInit {
   newCities: string[];
   reqParams: newDeviceParams = new DeviceParams();
   ngOnInit() {
-    this.add()
-    this.citiesOpt = this.setDevice.get('loc')!.valueChanges.pipe(startWith(''), map(value => this._filterGroup(value)),);
+    this.add();
+
+    this.api.formatCities().subscribe(cities => {
+      console.log(cities)
+      this.newCities = cities;
+
+
+    })
+
+    
+    this.citiesOpt = this.setDevice.get('loc').valueChanges.pipe(startWith(''), map(value => this._filterGroup(value)),);
+    console.log(this.citiesOpt)
   }
   private _filterGroup(value: string): string[] {
+    console.log('v:', value)
     if (value) {
       const filterValue = value.toLowerCase();
       return this.newCities.filter(item => item.toLowerCase().includes(filterValue));
