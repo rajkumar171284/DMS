@@ -1,0 +1,91 @@
+<div id="wrapper">
+
+  <div class="imgdiv">
+    <ion-img src="assets/device.png"></ion-img>
+    <ion-card-subtitle>Add new Device</ion-card-subtitle>
+  </div>
+
+  <form [formGroup]="newDevice" (ngSubmit)="setDeviceData()" class="input-content">
+    <div formArrayName="deviceArray">
+      <div >
+        <ion-list [formGroup]="newDevice">
+
+          <ion-item class="ion-margin-top">
+            <ion-label>Device Type</ion-label>
+            <ion-select formControlName="type" name="type" okText="Okay" cancelText="Dismiss">
+              <ion-select-option *ngFor="let a of deviceTypes" value="{{a.value}}">{{a.key}}</ion-select-option>
+
+            </ion-select>
+          </ion-item>
+
+        </ion-list>
+        <ion-list *ngFor="let inputform of deviceArray.controls;let i=index" [formGroup]="inputform" class="ion-margin-top">
+          <!-- {{i}} -->
+
+          <ion-item>
+            <ion-label position="floating">Device Name</ion-label>
+            <ion-input formControlName="name"></ion-input>
+            <ion-card-subtitle color="danger" *ngIf="!deviceArray.required && deviceArray.errors">
+              Found duplicates
+
+            </ion-card-subtitle>
+          </ion-item>
+
+          <ion-item>
+            <!-- <span class="p-float-label">
+                          <p-inputMask type="text" id="float-input" mask="0.0.0.0"></p-inputMask>
+
+              
+              <label for="float-input">IP</label>
+          </span> -->
+            <ion-label position="floating">IP</ion-label>
+            <!-- <input matInput mask="(000) 000-0000" placeholder="Ex. (000) 000-0000" value=""> -->
+
+            <ion-input formControlName="IP" [ngClass]="{
+              'is-invalid': inputform.get('IP').invalid && (inputform.get('IP').dirty || inputform.get('IP').touched),
+              'is-valid': inputform.get('IP').valid && (inputform.get('IP').dirty || inputform.get('IP').touched)
+            }"></ion-input>
+            <ion-card-subtitle color="danger" *ngIf="inputform.get('IP').errors">
+              invalid
+
+            </ion-card-subtitle>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">MAC Address</ion-label>
+            <ion-input formControlName="mac_address"></ion-input>
+          </ion-item>
+
+          <ion-item lines="none">
+            <ion-label position="floating">Location</ion-label>
+            <mat-form-field class="example-full-width" appearance="fill">
+
+              <input type="text" matInput formControlName="loc" [matAutocomplete]="auto">
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let name of citiesOpt | async" [value]="name">
+                  {{name}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+
+          </ion-item>
+
+        </ion-list>
+        <ion-list>
+          <ion-item lines="none">
+            <ion-button [disabled]="!newDevice.valid" type="submit" size="medium">
+              <ion-icon name="save-outline"></ion-icon>
+              Continue
+            </ion-button>
+
+            <ion-button (click)="add()" type="submit" size="medium">
+              <ion-icon name="plus-outline"></ion-icon>
+
+            </ion-button>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+  </form>
+
+
+</div>

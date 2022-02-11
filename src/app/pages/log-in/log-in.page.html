@@ -1,0 +1,93 @@
+<!-- <ion-header>
+  <ion-toolbar>
+    <ion-title>log-in</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content >
+  <div id="container">
+    <ion-card>
+      
+      <ion-card-header class="ion-text-center">
+        <ion-card-title color="light" class="ion-margin-top ion-text-uppercase">Device Management System</ion-card-title>
+      <div class="logo"></div>
+        <!-- <ion-img src="assets/DMSLogo.png"></ion-img> -->
+        <!-- <video autoplay muted loop id="myVideo">
+          <source src="../../../assets/DeviceManageSystemLogo.mp4" type="video/mp4" />
+      </video> -->
+        <!-- <video width="320" height="240" autoplay>
+          <source src="assets/DeviceManageSystemLogo.mp4" type="video/mp4">
+          
+          
+        </video> -->
+      </ion-card-header>
+      <ion-card-content>
+
+
+
+        <!-- <form (ngSubmit)="logIn()" class="example-form" autocomplete="off">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Username</mat-label>
+            <input type="text" class="form-control" matInput [formControl]="userFormControl"
+              [errorStateMatcher]="matcher" placeholder="">
+            <mat-error *ngIf="userFormControl.hasError('email') && !userFormControl.hasError('required')">
+              Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="userFormControl.hasError('text') && !userFormControl.hasError('required')">
+              Please enter with max 6
+            </mat-error>
+            <mat-error *ngIf="userFormControl.hasError('required')">
+              Username is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Password</mat-label>
+            <input type="password" class="form-control" matInput [formControl]="passwordFormControl"
+              [errorStateMatcher]="matcher" placeholder="">
+
+            <mat-error *ngIf="passwordFormControl.hasError('required')">
+              Password is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-card-actions>
+            <ion-button type="submit">LOGIN</ion-button>
+          </mat-card-actions>
+        </form> -->
+
+        <form [formGroup]="loginForm" (ngSubmit)="logIn()" class="example-form" autocomplete="off">
+
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Username</mat-label>
+            <input type="text" class="form-control" matInput [formControl]="userFormControl"
+              [errorStateMatcher]="matcher" value="" autocomplete="off" placeholder="">
+
+            <mat-error *ngIf="userFormControl.hasError('maxlength') && !userFormControl.hasError('required')">
+              Please enter with max 6
+            </mat-error>
+            <mat-error *ngIf="userFormControl.hasError('required')">
+              Username is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Password</mat-label>
+            <input type="password" class="form-control" matInput [formControl]="passwordFormControl"
+              [errorStateMatcher]="matcher" placeholder="">
+
+            <mat-error *ngIf="passwordFormControl.hasError('required')">
+              Password is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          <ion-footer >
+
+            <mat-card-actions>
+              <ion-button slot="end" color="medium" type="submit">LOGIN</ion-button>
+            </mat-card-actions>
+          </ion-footer>
+        </form>
+      </ion-card-content>
+    </ion-card>
+
+
+  </div>
+</ion-content>
