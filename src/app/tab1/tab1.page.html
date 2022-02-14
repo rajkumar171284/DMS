@@ -1,4 +1,4 @@
-<ion-header  [translucent]="true">
+<ion-header [translucent]="true">
   <ion-toolbar color="blue2">
     <ion-title color="dark">
       Device
@@ -20,25 +20,87 @@
     </ion-fab-button>
   </ion-fab>
 
+  <app-device-log name="onLoad"></app-device-log>
 
-    <cdk-virtual-scroll-viewport  minBufferPx="400" maxBufferPx="1350" itemSize="46">
-      <ion-row>
-        <ion-col  size="12" offset="0">
-          <ion-card-subtitle>here device list stating their status</ion-card-subtitle>
-          <ion-card color="light" class="ion-margin-bottom" *cdkVirtualFor="let item of deviceItems.deviceList" >
-            
-            <ion-item  >
+
+  <cdk-virtual-scroll-viewport minBufferPx="400" maxBufferPx="1350" itemSize="46">
+    <ion-row>
+      <ion-col size="12" offset="0">
+        <!-- <ion-card-subtitle>here device list stating their status</ion-card-subtitle> -->
+        <ion-card color="light" class="ion-margin-bottom" *cdkVirtualFor="let item of deviceItems">
+          <ion-item-sliding #item>
+
+            <ion-item-options side="start">
+              <div>
+                <ion-icon size="large" color="light" name="create-outline"></ion-icon>
+                <ion-label>
+                  Edit
+                </ion-label>
+              </div>
+              <!-- <ion-button class="ion-padding-start" vertical="center" expandable  color="none" ion-button (click)="editItem(item)">
+                <ion-icon size="large" color="light" name="create-outline"></ion-icon>
+                <ion-label>
+                  Edit
+                </ion-label>
+              </ion-button> -->
+
+            </ion-item-options>
+
+            <ion-item-options side="end">
+              <ion-button ion-button (click)="deleteItem(item)">
+                <ion-icon size="large" color="light" name="trash-outline"></ion-icon>
+                <ion-label>
+                  Remove</ion-label>
+              </ion-button>
+            </ion-item-options>
+
+            <ion-item>
+              <div class="cdk-list">
+
+                <div class="d-content1">
+                  <ion-icon name="logo-windows"></ion-icon>
+                  <ion-label> {{item.device_model}} </ion-label>
+
+                </div>
+                <div class="d-content2">
+                  <div>
+                    <ion-card-subtitle> {{item.device_name}} </ion-card-subtitle>
+
+                    <ion-card-subtitle>
+                      <!-- <ion-icon name="pin-outline"></ion-icon> -->
+                      {{item.location}}
+                    </ion-card-subtitle>
+                    <ion-label>ID : {{item.device_ip}} </ion-label>
+                    <ion-label color="dark">MAC : {{item.lan_mac_address}} </ion-label>
+                  </div>
+                  <!-- <div class="d-footer">
+                    <ion-avatar>
+
+                      <ion-icon color="success" name="create-outline"></ion-icon>
+                    </ion-avatar>
+                    <ion-avatar>
+
+                      <ion-icon color="danger" name="trash-outline"></ion-icon>
+                    </ion-avatar>
+                  </div> -->
+
+                </div>
+              </div>
+              <!-- <ion-item  >
             <ion-avatar slot="start">
               <ion-img src="assets/iot.png" ></ion-img>
             </ion-avatar>
-            <ion-label color="dark"> {{item.sensor}} </ion-label>
+            <ion-label color="dark"> {{item.device_model}} </ion-label>
          
-        </ion-item>
-      </ion-card>
-        </ion-col>
-      </ion-row>
-        
-      </cdk-virtual-scroll-viewport>
-  
+        </ion-item> -->
+            </ion-item>
+          </ion-item-sliding>
 
-  </ion-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+  </cdk-virtual-scroll-viewport>
+
+
+</ion-content>

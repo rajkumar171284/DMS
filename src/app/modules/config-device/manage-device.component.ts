@@ -17,8 +17,8 @@ const IPPattern = "^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|
 
 @Component({
   selector: 'app-config-device',
-  templateUrl: './config-device.component.html',
-  styleUrls: ['./config-device.component.scss'], providers: [FormBuilder]
+  templateUrl: './manage-device.component.html',
+  styleUrls: ['./manage-device.component.scss'], providers: [FormBuilder]
 })
 export class ConfigDeviceComponent implements OnInit {
   constructor(private fb: FormBuilder, private api: ApiRequestService) {

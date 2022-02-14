@@ -7,7 +7,7 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 import {sharedModule} from '../shared.module';
-
+import {DeviceLogComponent} from '../modules/device-log/device-log.component';
 @NgModule({
   imports: [
     IonicModule,
@@ -16,6 +16,6 @@ import {sharedModule} from '../shared.module';
     ExploreContainerComponentModule,
     Tab1PageRoutingModule,sharedModule
   ],
-  declarations: [Tab1Page]
+  declarations: [Tab1Page,DeviceLogComponent]
 })
 export class Tab1PageModule {}

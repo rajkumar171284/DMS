@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, Subject,of } from 'rxjs';
+import { Observable, Subject, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { newDeviceParams } from './../model/main.model';
+import { newDeviceParams, DeviceFilter } from './../model/main.model';
 
 import { deviceModel } from '../model/main.model';
 
@@ -31,38 +31,44 @@ interface newData {
 })
 export class ApiRequestService {
   private newSubject = new Subject<any>();
-  // private newSubject2 = new Subject<newData>();
+  private Subject = new Subject<any>();
   newCities: any = [];
   constructor(private http: HttpClient) {
 
-    // this.newCities=[];
-    // cityList.states.map(res => {
-    //   res.districts.map(group => this.newCities.push(group));
-    // })
-    // this.sendCities(this.newCities);
   }
 
 
   formatCities(): Observable<any> {
-    
-    let newArr:any = [];
+
+    let newArr: any = [];
     cityList.states.map(res => {
       res.districts.map(group => newArr.push(group));
     })
     return of(newArr);
-
-    // this.sendCities(this.newCities);11111111
   }
 
+  // add or edit device Api- 
   setDeviceDetails(params: newDeviceParams, label: string): Observable<any> {
+    // were 'label' as add or edit- interceptor will overwrite original api name
     return this.http.post(label, params, option).pipe(map(res => res));
+  }
+  // list all devices api
+  getAllDevice(params: any) {
+    console.log('ddsd', params)
+
+    return this.http.post(environment.apiURL + 'devices/showlog', params).pipe(map(res => res));
+
   }
 
   sendCities(data: any) {
     this.newSubject.next({ list: data })
   }
-  sendData(data: any) {
-    // this.newSubject2.next({ list: data,data:'' })
+  sendData(data: any, req: number) {
+    this.Subject.next({ data: data, request: req })
+  }
+
+  getData(): Observable<any> {
+    return this.Subject.asObservable();
   }
 
   getCityies(): Observable<any> {
@@ -72,7 +78,7 @@ export class ApiRequestService {
     this.newSubject.next()
   }
 
-  public _filterGroup(list:string[],value: string): string[] {
+  public _filterGroup(list: string[], value: string): string[] {
     if (value) {
       console.log(value)
       const filterValue = value.toLowerCase();

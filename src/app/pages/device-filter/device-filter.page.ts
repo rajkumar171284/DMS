@@ -19,13 +19,9 @@ export class DeviceFilterPage implements OnInit {
   deviceType = new deviceModel();
   deviceRow: DeviceFilter;
 
-  constructor(private pt: Platform, private fb: FormBuilder, private api: ApiRequestService,public modalController: ModalController) {
-
-    // this.api.getCityies().subscribe(res => {
-    //   console.log(res)
-    // })
+  constructor(private pt: Platform, private fb: FormBuilder, private api: ApiRequestService, public modalController: ModalController) {
   }
-  
+
   filterGroup = this.fb.group({
     device_type: ['', Validators.required],
     loc: ['', Validators.required],
@@ -37,7 +33,8 @@ export class DeviceFilterPage implements OnInit {
   ngOnInit() {
     this.api.formatCities().subscribe(list => this.newCities = list)
     this.citiesOpt = this.filterGroup.get('loc')!.valueChanges.pipe(startWith(''), map(value => this._filterGroup(value)),);
-    console.log(this.deviceType)
+    // console.log(this.deviceType)
+    
   }
   private _filterGroup(value: string): string[] {
     console.log('v:', value)
@@ -52,16 +49,25 @@ export class DeviceFilterPage implements OnInit {
     //   const selectedValue=formArr.controls.map(value=>value)
     // }
   }
-  filter(){
-    if(this.filterGroup.valid){
+  filter() {
+    
 
-      this.api.sendData({
-        
-      })
+    if (!this.filterGroup.valid) {
+      
+        const newParams: DeviceFilter = {
+          device_type: this.filterGroup.get('device_type').value,
+          start_date: this.filterGroup.get('start_date').value,
+          end_date: this.filterGroup.get('end_date').value,
+          location: this.filterGroup.get('loc').value,
+        }
+        this.api.sendData(newParams, 1)
+                   
+      this.close();
+      
     }
   }
 
-  close(){
+  close() {
     this.modalController.dismiss()
   }
 }

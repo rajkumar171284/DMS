@@ -15,13 +15,15 @@ import {commonInterceptor} from './common.interceptor';
 
 import {InputMaskModule} from 'primeng/inputmask';
 import {InputTextModule} from 'primeng/inputtext';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 
 
 @NgModule({
     imports: [MatInputModule, FormsModule, ReactiveFormsModule, MatCardModule, MatAutocompleteModule, ScrollingModule,
-        HttpClientModule,InputMaskModule,InputTextModule],
+        HttpClientModule,InputMaskModule,InputTextModule,MatDatepickerModule,MatNativeDateModule],
     exports: [MatInputModule, FormsModule, ReactiveFormsModule, MatCardModule, MatAutocompleteModule, ScrollingModule,
-        HttpClientModule,InputMaskModule,InputTextModule],
+        HttpClientModule,InputMaskModule,InputTextModule,MatDatepickerModule,MatNativeDateModule],
     providers: [FormControl,{
         provide: HTTP_INTERCEPTORS, 
         useClass: commonInterceptor, 
