@@ -8,7 +8,7 @@ cdk-virtual-scroll-viewport {
     // margin: 1em auto;
   }
   .cdk-list{
-      display: flex;
+      display: flex;padding: 5px;
   }
   .cdk-list div{
       flex-direction: column;
@@ -21,28 +21,21 @@ cdk-virtual-scroll-viewport {
       height: 120px;
     //   width: 40%;
       ion-icon{
-        font-size: 3em;
+        font-size: 3em;color:dodgerblue
       }
   }
   .d-content2{
     //   width: 60%;
+    border-left: 1px solid rgb(106, 120, 134);
       height: 120px;
       padding:5px 5px 10px;
       display: flex;
       justify-content: center;
-      
-      .d-footer{
-    //     display: flex;
-    //     flex-direction: row;
-    // justify-content: flex-end;
-    //    ion-icon{
-    //        font-size: 1.5em;
-    //    }
-    
-      }
+      // background-color: #f3f3f3;
+  
     
 ion-card-subtitle{
-    text-transform: uppercase;
+    text-transform: uppercase;color:#888;
 }
   }
   .item-sliding-active-slide.item-sliding-active-options-start .item-options-start{
@@ -56,7 +49,8 @@ ion-card-subtitle{
 }
 ion-item-options > div{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
+}
+ion-item-options > div div{
+  flex-direction: row;
 }

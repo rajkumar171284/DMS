@@ -31,11 +31,22 @@
           <ion-item-sliding #item>
 
             <ion-item-options side="start">
-              <div>
+              <div (click)="editItem(item)">
+                <!-- <ion-button color="none" ion-button >
+                  <div>
+                    <ion-icon size="large" color="light" name="trash-outline"></ion-icon>
+                  </div>
+                  <div>
+                    <ion-label>
+                      Remove</ion-label>
+                  </div>
+                  
+                  
+                </ion-button> -->
                 <ion-icon size="large" color="light" name="create-outline"></ion-icon>
-                <ion-label>
+                <!-- <ion-label color="light">
                   Edit
-                </ion-label>
+                </ion-label> -->
               </div>
               <!-- <ion-button class="ion-padding-start" vertical="center" expandable  color="none" ion-button (click)="editItem(item)">
                 <ion-icon size="large" color="light" name="create-outline"></ion-icon>
@@ -47,11 +58,21 @@
             </ion-item-options>
 
             <ion-item-options side="end">
-              <ion-button ion-button (click)="deleteItem(item)">
-                <ion-icon size="large" color="light" name="trash-outline"></ion-icon>
-                <ion-label>
-                  Remove</ion-label>
-              </ion-button>
+              <div (click)="deleteItem(item)">
+              <!-- <ion-button ion-button (click)="deleteItem(item)"> -->
+                <div>
+                  <!-- sddwe -->
+                  <ion-icon size="large" color="light" name="trash-outline"></ion-icon>
+                </div>
+                <!-- <div>
+                  <ion-label color="light">
+                    Remove</ion-label>
+                </div> -->
+                
+
+
+              <!-- </ion-button> -->
+            </div>
             </ion-item-options>
 
             <ion-item>
@@ -73,16 +94,7 @@
                     <ion-label>ID : {{item.device_ip}} </ion-label>
                     <ion-label color="dark">MAC : {{item.lan_mac_address}} </ion-label>
                   </div>
-                  <!-- <div class="d-footer">
-                    <ion-avatar>
 
-                      <ion-icon color="success" name="create-outline"></ion-icon>
-                    </ion-avatar>
-                    <ion-avatar>
-
-                      <ion-icon color="danger" name="trash-outline"></ion-icon>
-                    </ion-avatar>
-                  </div> -->
 
                 </div>
               </div>
