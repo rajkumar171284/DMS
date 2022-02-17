@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable, Subject, of } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { newDeviceParams, DeviceFilter } from './../model/main.model';
+import { newDeviceParams, DeviceFilter, newUser } from './../model/main.model';
+import { map, catchError } from 'rxjs/operators';
+
 
 import { deviceModel } from '../model/main.model';
 
@@ -56,7 +57,17 @@ export class ApiRequestService {
   getAllDevice(params: any) {
     console.log('ddsd', params)
 
-    return this.http.post(environment.apiURL + 'devices/showlog', params).pipe(map(res => res));
+    return this.http.post(environment.apiURL + 'devices/showlog', params).pipe(map(res => res), catchError(err => {
+      throw err
+    }));
+
+  }
+  // logn
+  userLogin(params: newUser) {
+    return this.http.post(environment.apiURL + 'login', params, { responseType: 'text' }).pipe(map((response) => response), catchError(err => {
+      throw err
+    }))
+
 
   }
 

@@ -32,18 +32,16 @@ export class commonInterceptor implements HttpInterceptor {
       })
       return next.handle(newReq);
     } 
-    // else {
+    else {
       
-    //   const newReq2 = request.clone({
-    //     url: apiurl + 'devices/showlog',
+      const newReq2 = request.clone({        
+        headers: new HttpHeaders({
+          'Content-Type':  'application/json',
+        })
+      })
+      return next.handle(newReq2);
 
-    //     headers: new HttpHeaders({
-    //       'Content-Type':  'application/json',
-    //     })
-    //   })
-    //   return next.handle(newReq2);
-
-    // }
-    return next.handle(request);
+    }
+    // return next.handle(request);
   }
 }

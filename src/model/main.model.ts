@@ -1,3 +1,9 @@
+export interface newUser{
+  username:string;password:string
+}
+export class newUser{
+  username:string;password:string
+}
 export interface DeviceFilter {
   device_type: string;
   start_date: string;

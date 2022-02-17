@@ -24,42 +24,11 @@
       <ion-card-content>
 
 
-
-        <!-- <form (ngSubmit)="logIn()" class="example-form" autocomplete="off">
-          <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Username</mat-label>
-            <input type="text" class="form-control" matInput [formControl]="userFormControl"
-              [errorStateMatcher]="matcher" placeholder="">
-            <mat-error *ngIf="userFormControl.hasError('email') && !userFormControl.hasError('required')">
-              Please enter a valid email address
-            </mat-error>
-            <mat-error *ngIf="userFormControl.hasError('text') && !userFormControl.hasError('required')">
-              Please enter with max 6
-            </mat-error>
-            <mat-error *ngIf="userFormControl.hasError('required')">
-              Username is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Password</mat-label>
-            <input type="password" class="form-control" matInput [formControl]="passwordFormControl"
-              [errorStateMatcher]="matcher" placeholder="">
-
-            <mat-error *ngIf="passwordFormControl.hasError('required')">
-              Password is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-
-          <mat-card-actions>
-            <ion-button type="submit">LOGIN</ion-button>
-          </mat-card-actions>
-        </form> -->
-
         <form [formGroup]="loginForm" (ngSubmit)="logIn()" class="example-form" autocomplete="off">
 
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Username</mat-label>
-            <input type="text" class="form-control" matInput [formControl]="userFormControl"
+            <input type="text" class="form-control" matInput formControlName="userFormControl"
               [errorStateMatcher]="matcher" value="" autocomplete="off" placeholder="">
 
             <mat-error *ngIf="userFormControl.hasError('maxlength') && !userFormControl.hasError('required')">
@@ -71,7 +40,7 @@
           </mat-form-field>
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Password</mat-label>
-            <input type="password" class="form-control" matInput [formControl]="passwordFormControl"
+            <input type="password" class="form-control" matInput formControlName="passwordFormControl"
               [errorStateMatcher]="matcher" placeholder="">
 
             <mat-error *ngIf="passwordFormControl.hasError('required')">
